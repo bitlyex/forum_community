@@ -1,0 +1,63 @@
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3' style='background: 006EE5'>
+    <div class='thread'>
+      <h4> <%= @thread.title.titleize %> </h4>
+
+      <div class='meta'>
+        <%= @thread.created_at.strftime("%A, %d %B %Y") %> by <%= @thread.user.name %>
+      </div>
+
+      <div class='content'>
+        <%= @thread.content %>
+      </div>
+      
+      <% if policy(@thread).edit? %>
+        <div class='edit'>
+          <%= link_to "Edit", edit_forum_thread_path(@thread), class: 'btn btn-primary' %>
+          <%= link_to "Delete", forum_thread_path(@thread),method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @thread.forum_posts.any? %>
+      <% @posts.each do |p| %>
+        <div class='thread'>
+          <div class='meta'>
+            <%= p.created_at.strftime("%A, %d %B %Y") %> by <%= p.user.name %>
+          </div>
+
+          <div class='content'>
+            <%= p.content %>
+          </div>
+        </div>
+      <% end %>
+        <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    <% else %>
+      <div>
+        Be the first to give a response!
+      </div>
+    <% end %> </br >
+
+    <% if @post.errors.any? %>
+      <div class='alert alert-danger alert-dismissible'>
+        <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+        <% @post.errors.full_messages.each do |error| %>
+          <span> <%= error %> </span> </br>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? %> 
+      <%= form_for [@thread, @post] do |f| %>
+        <div class='form-group'>
+          <%= f.label :content %>
+          <%= f.text_area :content, rows: 10, class: 'form-control' %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.submit "Post", class: 'btn btn-primary form-control' %>
+        </div>
+      <% end %> 
+    <% end %>
+  </div>
+</div>

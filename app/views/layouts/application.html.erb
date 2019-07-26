@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forum</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render partial: 'layouts/navbar' %>
+
+    <% flash.each do |key, value| %>
+          <label class="col-md-4 control-label" for="singlebutton"></label>
+      <div class="alert alert-warning alert-dismissible btn btn- col-md-4 center-block <%= key %>">
+					<button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+        <%= value %>
+      </div>
+    <% end %>
+
+    <div class ='container'>
+      <%= yield %>
+    </div>
+  </body>
+</html>
