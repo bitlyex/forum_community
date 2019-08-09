@@ -11,8 +11,8 @@ Voila! then you can access it on http://localhost:3000
 Opps! You must login to store_catalog.
 
 ```
-username; matsuda
-password; matsuda
+email; example@org.com
+password; up-to-you-guys
 
 ```
 # Heroku Deploy
