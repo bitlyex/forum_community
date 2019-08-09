@@ -1,24 +1,20 @@
 # README
+To run this application you just have to run this:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+rake db:create 
+rake db:migrate
+rails s -b 0.0.0.0
+```
+Voila! then you can access it on http://localhost:3000
 
-Things you may want to cover:
+Opps! You must login to store_catalog.
 
-* Ruby version
+```
+username; matsuda
+password; matsuda
 
-* System dependencies
+```
+# Heroku Deploy
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://snapilio.herokuapp.com
